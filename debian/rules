@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_build-arch:
+	$(MAKE) --directory=Release
+
+override_dh_auto_clean:
+	$(MAKE) --directory=Release clean
+	dh_auto_clean
