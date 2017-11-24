@@ -1,7 +1,7 @@
 Source: siridb-server
 Section: database
 Priority: optional
-Maintainer: siridb-server@packages.debian.org
+Maintainer: SiriDB Maintainers <siridb-server@packages.debian.org>
 Uploaders:
  Jeroen van der Heijden <jeroen@transceptor.technology>,
  Paul Gevers <elbrus@debian.org>,
@@ -20,13 +20,13 @@ Architecture: any
 Depends:
  ucf,
  ${misc:Depends},
- ${perl:Depends},
+ ${shlibs:Depends},
 Recommends:
  siridb-admin,
 Suggests:
  libsiridb,
- siridb-client-python3,
  siridb-client-go,
  siridb-client-nodejs,
+ siridb-client-python3,
 Description: SiriDB time series database server
  SiriDB is a fast and scalable time series database.
