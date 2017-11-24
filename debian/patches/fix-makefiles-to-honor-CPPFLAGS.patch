@@ -1,0 +1,806 @@
+Index: siridb-server/Debug/src/argparse/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/argparse/subdir.mk
++++ siridb-server/Debug/src/argparse/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/argparse/%.o: ../src/argparse/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/cexpr/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/cexpr/subdir.mk
++++ siridb-server/Debug/src/cexpr/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/cexpr/%.o: ../src/cexpr/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/cfgparser/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/cfgparser/subdir.mk
++++ siridb-server/Debug/src/cfgparser/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/cfgparser/%.o: ../src/cfgparser/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/ctree/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/ctree/subdir.mk
++++ siridb-server/Debug/src/ctree/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/ctree/%.o: ../src/ctree/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/expr/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/expr/subdir.mk
++++ siridb-server/Debug/src/expr/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/expr/%.o: ../src/expr/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/imap/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/imap/subdir.mk
++++ siridb-server/Debug/src/imap/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/imap/%.o: ../src/imap/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/iso8601/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/iso8601/subdir.mk
++++ siridb-server/Debug/src/iso8601/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/iso8601/%.o: ../src/iso8601/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/llist/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/llist/subdir.mk
++++ siridb-server/Debug/src/llist/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/llist/%.o: ../src/llist/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/lock/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/lock/subdir.mk
++++ siridb-server/Debug/src/lock/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/lock/%.o: ../src/lock/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/logger/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/logger/subdir.mk
++++ siridb-server/Debug/src/logger/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/logger/%.o: ../src/logger/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/motd/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/motd/subdir.mk
++++ siridb-server/Debug/src/motd/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/motd/%.o: ../src/motd/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/owcrypt/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/owcrypt/subdir.mk
++++ siridb-server/Debug/src/owcrypt/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/owcrypt/%.o: ../src/owcrypt/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/procinfo/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/procinfo/subdir.mk
++++ siridb-server/Debug/src/procinfo/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/procinfo/%.o: ../src/procinfo/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/qpack/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/qpack/subdir.mk
++++ siridb-server/Debug/src/qpack/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/qpack/%.o: ../src/qpack/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/subdir.mk
++++ siridb-server/Debug/src/siri/subdir.mk
+@@ -35,7 +35,7 @@ C_DEPS += \
+ src/siri/%.o: ../src/siri/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/slist/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/slist/subdir.mk
++++ siridb-server/Debug/src/slist/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/slist/%.o: ../src/slist/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/strextra/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/strextra/subdir.mk
++++ siridb-server/Debug/src/strextra/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/strextra/%.o: ../src/strextra/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/test/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/test/subdir.mk
++++ siridb-server/Debug/src/test/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/test/%.o: ../src/test/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/timeit/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/timeit/subdir.mk
++++ siridb-server/Debug/src/timeit/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/timeit/%.o: ../src/timeit/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/xmath/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/xmath/subdir.mk
++++ siridb-server/Debug/src/xmath/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/xmath/%.o: ../src/xmath/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/xpath/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/xpath/subdir.mk
++++ siridb-server/Debug/src/xpath/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/xpath/%.o: ../src/xpath/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/subdir.mk
++++ siridb-server/Debug/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ %.o: ../%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/argparse/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/argparse/subdir.mk
++++ siridb-server/Release/src/argparse/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/argparse/%.o: ../src/argparse/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/cexpr/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/cexpr/subdir.mk
++++ siridb-server/Release/src/cexpr/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/cexpr/%.o: ../src/cexpr/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/cfgparser/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/cfgparser/subdir.mk
++++ siridb-server/Release/src/cfgparser/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/cfgparser/%.o: ../src/cfgparser/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/ctree/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/ctree/subdir.mk
++++ siridb-server/Release/src/ctree/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/ctree/%.o: ../src/ctree/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/expr/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/expr/subdir.mk
++++ siridb-server/Release/src/expr/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/expr/%.o: ../src/expr/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/imap/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/imap/subdir.mk
++++ siridb-server/Release/src/imap/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/imap/%.o: ../src/imap/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/iso8601/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/iso8601/subdir.mk
++++ siridb-server/Release/src/iso8601/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/iso8601/%.o: ../src/iso8601/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/llist/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/llist/subdir.mk
++++ siridb-server/Release/src/llist/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/llist/%.o: ../src/llist/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/lock/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/lock/subdir.mk
++++ siridb-server/Release/src/lock/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/lock/%.o: ../src/lock/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/logger/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/logger/subdir.mk
++++ siridb-server/Release/src/logger/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/logger/%.o: ../src/logger/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/motd/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/motd/subdir.mk
++++ siridb-server/Release/src/motd/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/motd/%.o: ../src/motd/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/owcrypt/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/owcrypt/subdir.mk
++++ siridb-server/Release/src/owcrypt/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/owcrypt/%.o: ../src/owcrypt/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/procinfo/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/procinfo/subdir.mk
++++ siridb-server/Release/src/procinfo/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/procinfo/%.o: ../src/procinfo/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/qpack/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/qpack/subdir.mk
++++ siridb-server/Release/src/qpack/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/qpack/%.o: ../src/qpack/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/subdir.mk
++++ siridb-server/Release/src/siri/subdir.mk
+@@ -35,7 +35,7 @@ C_DEPS += \
+ src/siri/%.o: ../src/siri/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/slist/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/slist/subdir.mk
++++ siridb-server/Release/src/slist/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/slist/%.o: ../src/slist/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/strextra/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/strextra/subdir.mk
++++ siridb-server/Release/src/strextra/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/strextra/%.o: ../src/strextra/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/test/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/test/subdir.mk
++++ siridb-server/Release/src/test/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/test/%.o: ../src/test/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/timeit/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/timeit/subdir.mk
++++ siridb-server/Release/src/timeit/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/timeit/%.o: ../src/timeit/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/xmath/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/xmath/subdir.mk
++++ siridb-server/Release/src/xmath/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/xmath/%.o: ../src/xmath/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/xpath/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/xpath/subdir.mk
++++ siridb-server/Release/src/xpath/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/xpath/%.o: ../src/xpath/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/subdir.mk
++++ siridb-server/Release/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ %.o: ../%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/admin/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/admin/subdir.mk
++++ siridb-server/Debug/src/siri/admin/subdir.mk
+@@ -23,7 +23,7 @@ C_DEPS += \
+ src/siri/admin/%.o: ../src/siri/admin/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/args/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/args/subdir.mk
++++ siridb-server/Debug/src/siri/args/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/siri/args/%.o: ../src/siri/args/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/cfg/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/cfg/subdir.mk
++++ siridb-server/Debug/src/siri/cfg/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/siri/cfg/%.o: ../src/siri/cfg/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/db/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/db/subdir.mk
++++ siridb-server/Debug/src/siri/db/subdir.mk
+@@ -122,7 +122,7 @@ C_DEPS += \
+ src/siri/db/%.o: ../src/siri/db/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/file/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/file/subdir.mk
++++ siridb-server/Debug/src/siri/file/subdir.mk
+@@ -20,7 +20,7 @@ C_DEPS += \
+ src/siri/file/%.o: ../src/siri/file/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/grammar/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/grammar/subdir.mk
++++ siridb-server/Debug/src/siri/grammar/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/siri/grammar/%.o: ../src/siri/grammar/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/help/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/help/subdir.mk
++++ siridb-server/Debug/src/siri/help/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/siri/help/%.o: ../src/siri/help/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/net/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/net/subdir.mk
++++ siridb-server/Debug/src/siri/net/subdir.mk
+@@ -35,7 +35,7 @@ C_DEPS += \
+ src/siri/net/%.o: ../src/siri/net/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Debug/src/siri/parser/subdir.mk
+===================================================================
+--- siridb-server.orig/Debug/src/siri/parser/subdir.mk
++++ siridb-server/Debug/src/siri/parser/subdir.mk
+@@ -20,7 +20,7 @@ C_DEPS += \
+ src/siri/parser/%.o: ../src/siri/parser/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -DDEBUG=1 -I../include -O0 -g3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/admin/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/admin/subdir.mk
++++ siridb-server/Release/src/siri/admin/subdir.mk
+@@ -23,7 +23,7 @@ C_DEPS += \
+ src/siri/args/%.o: ../src/siri/args/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/args/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/args/subdir.mk
++++ siridb-server/Release/src/siri/args/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/siri/args/%.o: ../src/siri/args/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/cfg/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/cfg/subdir.mk
++++ siridb-server/Release/src/siri/cfg/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/siri/cfg/%.o: ../src/siri/cfg/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/db/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/db/subdir.mk
++++ siridb-server/Release/src/siri/db/subdir.mk
+@@ -122,7 +122,7 @@ C_DEPS += \
+ src/siri/db/%.o: ../src/siri/db/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/file/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/file/subdir.mk
++++ siridb-server/Release/src/siri/file/subdir.mk
+@@ -20,7 +20,7 @@ C_DEPS += \
+ src/siri/file/%.o: ../src/siri/file/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/grammar/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/grammar/subdir.mk
++++ siridb-server/Release/src/siri/grammar/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/siri/grammar/%.o: ../src/siri/grammar/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/help/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/help/subdir.mk
++++ siridb-server/Release/src/siri/help/subdir.mk
+@@ -17,7 +17,7 @@ C_DEPS += \
+ src/siri/help/%.o: ../src/siri/help/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/net/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/net/subdir.mk
++++ siridb-server/Release/src/siri/net/subdir.mk
+@@ -35,7 +35,7 @@ C_DEPS += \
+ src/siri/net/%.o: ../src/siri/net/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
+Index: siridb-server/Release/src/siri/parser/subdir.mk
+===================================================================
+--- siridb-server.orig/Release/src/siri/parser/subdir.mk
++++ siridb-server/Release/src/siri/parser/subdir.mk
+@@ -20,7 +20,7 @@ C_DEPS += \
+ src/siri/parser/%.o: ../src/siri/parser/%.c
+ 	@echo 'Building file: $<'
+ 	@echo 'Invoking: GCC C Compiler'
+-	gcc -I../include -O3 -Wall -Wextra $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
++	gcc -I../include -O3 -Wall -Wextra $(CPPFLAGS) $(CFLAGS) -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+ 	@echo 'Finished building: $<'
+ 	@echo ' '
+ 
