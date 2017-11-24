@@ -18,6 +18,7 @@ Standards-Version: 4.1.1
 Package: siridb-server
 Architecture: any
 Depends:
+ ucf,
  ${misc:Depends},
  ${perl:Depends},
 Recommends:
