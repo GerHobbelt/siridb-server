@@ -29,8 +29,8 @@ Suggests:
  siridb-client-nodejs,
  siridb-client-python3,
 Description: SiriDB time series database server
- SiriDB is a highly-scalable, robust and super fast time series database. Build
- from the ground up SiriDB uses a unique mechanism to operate without a global
- index and allows server resources to be added on the fly. SiriDB's unique
- query language includes dynamic grouping of time series for easy analysis over
- large amounts of time series.
+ SiriDB is a scalable, robust and fast time series database. Build from the
+ ground up SiriDB uses a mechanism to operate without a global index and allows
+ server resources to be added on the fly. SiriDB's query language includes
+ dynamic grouping of time series for easy analysis over large amounts of time
+ series.
