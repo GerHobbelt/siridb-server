@@ -1,5 +1,5 @@
 siridb-server (2.0.25-1) unstable; urgency=medium
 
-  * Initial release. (Closes: #XXXXXX)
+  * Initial release. (Closes: #882678)
 
- -- Paul Gevers <elbrus@debian.org>  Wed, 22 Nov 2017 09:28:53 +0100
+ -- Paul Gevers <elbrus@debian.org>  Mon, 04 Dec 2017 21:40:02 +0100
