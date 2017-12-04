@@ -13,7 +13,7 @@ Build-Depends:
  libuv1-dev,
  uuid-dev,
 Homepage: http://siridb.net/
-Standards-Version: 4.1.1
+Standards-Version: 4.1.2
 
 Package: siridb-server
 Architecture: any
@@ -21,13 +21,6 @@ Depends:
  ucf,
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- siridb-admin,
-Suggests:
- libsiridb,
- siridb-client-go,
- siridb-client-nodejs,
- siridb-client-python3,
 Description: SiriDB time series database server
  SiriDB is a scalable, robust and fast time series database. Build from the
  ground up SiriDB uses a mechanism to operate without a global index and allows
