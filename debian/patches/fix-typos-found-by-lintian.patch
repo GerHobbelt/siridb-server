@@ -1,3 +1,7 @@
+Description: lintian found typo
+Author: Paul Gevers <elbrus@debian.org>
+Forwarded: Jeroen van der Heijden <jeroen@transceptor.technology>
+
 Index: siridb-server/src/test/test.c
 ===================================================================
 --- siridb-server.orig/src/test/test.c

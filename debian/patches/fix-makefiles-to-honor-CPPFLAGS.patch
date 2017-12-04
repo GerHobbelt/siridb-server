@@ -1,3 +1,7 @@
+Description: To enable hardening CPPFLAGS must be honored
+Author: Paul Gevers <elbrus@debian.org>
+Forwarded: Jeroen van der Heijden <jeroen@transceptor.technology>
+
 Index: siridb-server/Debug/src/argparse/subdir.mk
 ===================================================================
 --- siridb-server.orig/Debug/src/argparse/subdir.mk
