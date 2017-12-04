@@ -13,6 +13,7 @@ Build-Depends:
  libuv1-dev,
  uuid-dev,
 Homepage: http://siridb.net/
+Vcs-Browser: https://github.com/paulgevers/siridb-server/tree/debian-packaging
 Standards-Version: 4.1.2
 
 Package: siridb-server
