@@ -9,13 +9,16 @@
  *  - initial version, 16-03-2017
  *
  */
+
+#define PCRE2_CODE_UNIT_WIDTH 8
+
 #include <siri/admin/account.h>
 #include <siri/admin/client.h>
 #include <stddef.h>
 #include <siri/admin/request.h>
 #include <siri/siri.h>
 #include <logger/logger.h>
-#include <pcre.h>
+#include <pcre2.h>
 #include <lock/lock.h>
 #include <xmath/xmath.h>
 #include <unistd.h>
@@ -43,15 +46,14 @@
 "# path = <buffer_path>\n"
 
 #define CHECK_DBNAME_AND_CREATE_PATH                                        \
-    pcre_exec_ret = pcre_exec(                                              \
+    pcre_exec_ret = pcre2_match(                                            \
             siri.dbname_regex,                                              \
-            siri.dbname_regex_extra,                                        \
-            qp_dbname.via.raw,                                              \
+            (PCRE2_SPTR8) qp_dbname.via.raw,                                \
             qp_dbname.len,                                                  \
             0,                                                              \
             0,                                                              \
-            sub_str_vec,                                                    \
-            2);                                                             \
+            siri.dbname_match_data,                                         \
+            NULL);                                                          \
                                                                             \
     if (pcre_exec_ret < 0)                                                  \
     {                                                                       \
@@ -186,37 +188,34 @@ int siri_admin_request_init(void)
             strlen(DB_DAT_FN),
             strlen(REINDEX_FN));
 
-    const char * pcre_error_str;
-    int pcre_error_offset;
+    int pcre_error_num;
+    PCRE2_SIZE pcre_error_offset;
 
-    pcre * regex;
-    pcre_extra * regex_extra;
+    pcre2_code * regex;
+    pcre2_match_data * match_data;
 
-    regex = pcre_compile(
-                "^[a-zA-Z][a-zA-Z0-9-_]{0,18}[a-zA-Z0-9]$",
+    regex = pcre2_compile(
+                (PCRE2_SPTR8) "^[a-zA-Z][a-zA-Z0-9-_]{0,18}[a-zA-Z0-9]$",
+                PCRE2_ZERO_TERMINATED,
                 0,
-                &pcre_error_str,
+                &pcre_error_num,
                 &pcre_error_offset,
                 NULL);
     if (regex == NULL)
     {
         return -1;
     }
-    regex_extra = pcre_study(regex, 0, &pcre_error_str);
+    match_data = pcre2_match_data_create_from_pattern(regex, NULL);
 
-    /* pcre_study() returns NULL for both errors and when it can not
-     * optimize the regex.  The last argument is how one checks for
-     * errors (it is NULL if everything works, and points to an error
-     * string otherwise. */
-    if(pcre_error_str != NULL)
+    if(match_data == NULL)
     {
-        free(regex_extra);
-        free(regex);
+        pcre2_match_data_free(match_data);
+        pcre2_code_free(regex);
         return -1;
     }
 
     siri.dbname_regex = regex;
-    siri.dbname_regex_extra = regex_extra;
+    siri.dbname_match_data = match_data;
 
     return 0;
 }
@@ -226,8 +225,8 @@ int siri_admin_request_init(void)
  */
 void siri_admin_request_destroy(void)
 {
-    free(siri.dbname_regex);
-    free(siri.dbname_regex_extra);
+    pcre2_match_data_free(siri.dbname_match_data);
+    pcre2_code_free(siri.dbname_regex);
 }
 
 /*
@@ -300,12 +299,18 @@ static cproto_server_t ADMIN_on_new_account(
 
     while (qp_next(qp_unpacker, &qp_key) == QP_RAW)
     {
-        if (    strncmp(qp_key.via.raw, "account", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "account",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_account) == QP_RAW)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "password", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "password",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_password) == QP_RAW)
         {
             continue;
@@ -349,12 +354,18 @@ static cproto_server_t ADMIN_on_change_password(
 
     while (qp_next(qp_unpacker, &qp_key) == QP_RAW)
     {
-        if (    strncmp(qp_key.via.raw, "account", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "account",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_account) == QP_RAW)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "password", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "password",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_password) == QP_RAW)
         {
             continue;
@@ -397,7 +408,10 @@ static cproto_server_t ADMIN_on_drop_account(
 
     while (qp_next(qp_unpacker, &qp_key) == QP_RAW)
     {
-        if (    strncmp(qp_key.via.raw, "account", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "account",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_target) == QP_RAW)
         {
             continue;
@@ -411,7 +425,10 @@ static cproto_server_t ADMIN_on_drop_account(
     }
 
     if (qp_target.len == qp_account->len &&
-        strncmp(qp_target.via.raw, qp_account->via.raw, qp_target.len) == 0)
+        strncmp(
+            (const char *) qp_target.via.raw,
+            (const char *) qp_account->via.raw,
+            qp_target.len) == 0)
     {
         sprintf(err_msg, "cannot drop your own account");
         return CPROTO_ERR_ADMIN;
@@ -444,13 +461,14 @@ static cproto_server_t ADMIN_on_new_database(
         qp_duration_log;
     size_t dbpath_len;
     int pcre_exec_ret;
-    int sub_str_vec[2];
     int rc;
-    struct stat st = {0};
+    struct stat st;
     int8_t time_precision;
     int64_t buffer_size, duration_num, duration_log;
     siridb_t * siridb;
     uuid_t uuid;
+
+    memset(&st, 0, sizeof(struct stat));
 
     if (siri.siridb_list->len == MAX_NUMBER_DB)
     {
@@ -473,27 +491,42 @@ static cproto_server_t ADMIN_on_new_database(
 
     while (qp_next(qp_unpacker, &qp_key) == QP_RAW)
     {
-        if (    strncmp(qp_key.via.raw, "dbname", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "dbname",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_dbname) == QP_RAW)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "time_precision", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "time_precision",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_time_precision) == QP_RAW)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "buffer_size", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "buffer_size",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_buffer_size) == QP_INT64)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "duration_num", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "duration_num",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_duration_num) == QP_RAW)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "duration_log", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "duration_log",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_duration_log) == QP_RAW)
         {
             continue;
@@ -583,7 +616,7 @@ static cproto_server_t ADMIN_on_new_database(
 
     if (qp_fadd_type(fp, QP_ARRAY_OPEN) ||
         qp_fadd_int8(fp, SIRIDB_SCHEMA) ||
-        qp_fadd_raw(fp, (const char *) uuid, 16) ||
+        qp_fadd_raw(fp, (const unsigned char *) uuid, 16) ||
         qp_fadd_raw(fp, qp_dbname.via.raw, qp_dbname.len) ||
         qp_fadd_int8(fp, time_precision) ||
         qp_fadd_int64(fp, buffer_size) ||
@@ -648,11 +681,12 @@ static cproto_server_t ADMIN_on_new_replica_or_pool(
         qp_password;
     size_t dbpath_len;
     int pcre_exec_ret;
-    int sub_str_vec[2];
     int rc;
-    struct stat st = {0};
+    struct stat st;
     uint16_t port;
     uuid_t uuid;
+
+    memset(&st, 0, sizeof(struct stat));
 
     if (siri.siridb_list->len == MAX_NUMBER_DB)
     {
@@ -676,32 +710,44 @@ static cproto_server_t ADMIN_on_new_replica_or_pool(
 
     while (qp_next(qp_unpacker, &qp_key) == QP_RAW)
     {
-        if (    strncmp(qp_key.via.raw, "dbname", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "dbname",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_dbname) == QP_RAW)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "pool", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw, "pool", qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_pool) == QP_INT64)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "host", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw, "host", qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_host) == QP_RAW)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "port", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw, "port", qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_port) == QP_INT64)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "username", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "username",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_username) == QP_RAW)
         {
             continue;
         }
-        if (    strncmp(qp_key.via.raw, "password", qp_key.len) == 0 &&
+        if (    strncmp(
+                    (const char *) qp_key.via.raw,
+                    "password",
+                    qp_key.len) == 0 &&
                 qp_next(qp_unpacker, &qp_password) == QP_RAW)
         {
             continue;
@@ -907,14 +953,14 @@ static int64_t ADMIN_duration(qp_obj_t * qp_duration, uint8_t time_precision)
         return -1;
     }
 
-    val = strtol(qp_duration->via.raw, &endptr, 10);
+    val = strtol((const char *) qp_duration->via.raw, &endptr, 10);
 
-    if (val < 1 || val > 99 || endptr == qp_duration->via.raw)
+    if (val < 1 || val > 99 || endptr == (const char *) qp_duration->via.raw)
     {
         return -1;
     }
 
-    if (endptr != qp_duration->via.raw + (qp_duration->len - 1))
+    if (endptr != (const char *) qp_duration->via.raw + (qp_duration->len - 1))
     {
         return -1;
     }
@@ -938,7 +984,10 @@ static int ADMIN_find_database(siridb_t * siridb, qp_obj_t * dbname)
 {
     return (
         strlen(siridb->dbname) == dbname->len &&
-        strncmp(siridb->dbname, dbname->via.raw, dbname->len) == 0);
+        strncmp(
+            siridb->dbname,
+            (const char *) dbname->via.raw,
+            dbname->len) == 0);
 }
 
 static int ADMIN_list_accounts(

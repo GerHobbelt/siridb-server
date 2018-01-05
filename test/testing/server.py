@@ -26,12 +26,17 @@ class Server:
     SERVER_ADDRESS = '%HOSTNAME'
     IP_SUPPORT = 'ALL'
     USE_XFCE4 = False
+    BIND_CLIENT_ADDRESS = "::"
+    BIND_SERVER_ADDRESS = "::"
 
     def __init__(self,
                  n,
                  optimize_interval=30,
-                 heartbeat_interval=30):
+                 heartbeat_interval=30,
+                 compression=True,
+                 **unused):
         self.n = n
+        self.compression = compression
         self.listen_client_port = 9000 + n
         self.listen_backend_port = 9010 + n
         self._server_address = self.SERVER_ADDRESS
@@ -41,6 +46,8 @@ class Server:
         self.ip_support = self.IP_SUPPORT
         self.optimize_interval = optimize_interval
         self.heartbeat_interval = heartbeat_interval
+        self.bind_client_address = self.BIND_CLIENT_ADDRESS
+        self.bind_server_address = self.BIND_SERVER_ADDRESS
         self.cfgfile = os.path.join(TEST_DIR, 'siridb{}.conf'.format(self.n))
         self.dbpath = os.path.join(TEST_DIR, 'dbpath{}'.format(self.n))
         self.name = 'SiriDB:{}'.format(self.listen_backend_port)
@@ -56,6 +63,8 @@ class Server:
         config = configparser.RawConfigParser()
         config.add_section('siridb')
         config.set('siridb', 'listen_client_port', self.listen_client_port)
+        config.set('siridb', 'bind_client_address', self.bind_client_address)
+        config.set('siridb', 'bind_server_address', self.bind_server_address)
         config.set('siridb', 'server_name', '{}:{}'.format(
             self._server_address,
             self.listen_backend_port))
@@ -64,6 +73,7 @@ class Server:
         config.set('siridb', 'heartbeat_interval', self.heartbeat_interval)
         config.set('siridb', 'default_db_path', self.dbpath)
         config.set('siridb', 'max_open_files', MAX_OPEN_FILES)
+        config.set('siridb', 'enable_shard_compression', int(self.compression))
 
         with open(self.cfgfile, 'w') as configfile:
             config.write(configfile)
@@ -75,7 +85,9 @@ class Server:
 
     def _get_pid_set(self):
         try:
-            ret = set(map(int, subprocess.check_output(['pgrep', MEM_PROC if self.MEM_CHECK else 'siridb-server']).split()))
+            ret = set(map(int, subprocess.check_output([
+                'pgrep',
+                MEM_PROC if self.MEM_CHECK else 'siridb-server']).split()))
         except subprocess.CalledProcessError:
             ret = set()
         return ret
@@ -85,7 +97,8 @@ class Server:
 
         if self.USE_XFCE4:
             rc = subprocess.Popen(
-                'xfce4-terminal -e "{}{} --config {} --log-colorized" --title {} --geometry={}{}'
+                'xfce4-terminal -e "{}{} --config {} --log-colorized"'
+                ' --title {} --geometry={}{}'
                 .format(VALGRIND if self.MEM_CHECK else '',
                         SIRIDBC.format(BUILDTYPE=self.BUILDTYPE),
                         self.cfgfile,

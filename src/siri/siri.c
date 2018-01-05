@@ -50,6 +50,7 @@
 #include <unistd.h>
 #include <xpath/xpath.h>
 
+
 static void SIRI_signal_handler(uv_signal_t * req, int signum);
 static int SIRI_load_databases(void);
 static void SIRI_close_handlers(void);
@@ -87,7 +88,7 @@ siri_t siri = {
         .startup_time=0,
         .accounts=NULL,
         .dbname_regex=NULL,
-        .dbname_regex_extra=NULL,
+        .dbname_match_data=NULL,
         .socket=NULL};
 
 void siri_setup_logger(void)
@@ -236,6 +237,9 @@ void siri_free(void)
     /* free siridb admin request */
     siri_admin_request_destroy();
 
+    /* free config */
+    siri_cfg_destroy(&siri);
+
     /* free event loop */
     free(siri.loop);
 }
@@ -244,7 +248,7 @@ static int SIRI_load_databases(void)
 {
     DIR * db_container_path;
     struct dirent * dbpath;
-    char buffer[PATH_MAX];
+    char buffer[SIRI_PATH_MAX];
 
     if (!xpath_is_dir(siri.cfg->default_db_path))
     {
@@ -276,7 +280,7 @@ static int SIRI_load_databases(void)
         }
 
         snprintf(buffer,
-                PATH_MAX,
+                SIRI_PATH_MAX,
                 "%s%s/",
                 siri.cfg->default_db_path,
                 dbpath->d_name);

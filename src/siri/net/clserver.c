@@ -110,6 +110,8 @@ int sirinet_clserver_init(siri_t * siri)
 #endif
 
     int rc;
+    int ip_v6 = 0;  /* false */
+    char * ip;
 
     /* bind loop to the given loop */
     loop = siri->loop;
@@ -119,19 +121,38 @@ int sirinet_clserver_init(siri_t * siri)
     /* make sure data is set to NULL so we later on can check this value. */
     client_server.data = NULL;
 
-    if (siri->cfg->ip_support == IP_SUPPORT_IPV4ONLY)
+    if (siri->cfg->bind_client_addr != NULL)
     {
-        uv_ip4_addr(
-                "0.0.0.0",
-                siri->cfg->listen_client_port,
-                (struct sockaddr_in *) &client_addr);
+        struct in6_addr sa6;
+        if (inet_pton(AF_INET6, siri->cfg->bind_client_addr, &sa6))
+        {
+            ip_v6 = 1;  /* true */
+        }
+        ip = siri->cfg->bind_client_addr;
+    }
+    else if (siri->cfg->ip_support == IP_SUPPORT_IPV4ONLY)
+    {
+        ip = "0.0.0.0";
     }
     else
     {
+        ip = "::";
+        ip_v6 = 1;  /* true */
+    }
+
+    if (ip_v6)
+    {
         uv_ip6_addr(
-                "::",
+                ip,
                 siri->cfg->listen_client_port,
                 (struct sockaddr_in6 *) &client_addr);
+    }
+    else
+    {
+        uv_ip4_addr(
+                ip,
+                siri->cfg->listen_client_port,
+                (struct sockaddr_in *) &client_addr);
     }
 
     uv_tcp_bind(
@@ -425,7 +446,7 @@ static void on_query(uv_stream_t * client, sirinet_pkg_t * pkg)
         siridb_query_run(
                 pkg->pid,
                 client,
-                qp_query.via.raw,
+                (const char *) qp_query.via.raw,
                 qp_query.len,
                 factor,
                 SIRIDB_QUERY_FLAG_MASTER);
@@ -595,7 +616,8 @@ static void on_loaddb(uv_stream_t * client, sirinet_pkg_t * pkg)
     qp_obj_t qp_dbpath;
     if (qp_next(&unpacker, &qp_dbpath) == QP_RAW)
     {
-        char * dbpath = strndup(qp_dbpath.via.raw, qp_dbpath.len);
+        char * dbpath = strndup(
+                (const char *) qp_dbpath.via.raw, qp_dbpath.len);
 
         if (dbpath == NULL)
         {
@@ -682,7 +704,7 @@ static void on_reqfile(
                     pkg->pid,
                     size,
                     CPROTO_RES_FILE,
-                    content);
+                    (const unsigned char *) content);
         free(content);
     }
 
@@ -766,7 +788,10 @@ static void on_register_server(uv_stream_t * client, sirinet_pkg_t * pkg)
         else
         {
             log_info("Register a new server");
-            new_server = siridb_server_register(siridb, pkg->data, pkg->len);
+            new_server = siridb_server_register(
+                    siridb,
+                    (unsigned char *) pkg->data,
+                    pkg->len);
 
             pkg->tp = BPROTO_REGISTER_SERVER;
 

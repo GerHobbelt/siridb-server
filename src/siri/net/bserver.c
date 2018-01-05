@@ -68,6 +68,8 @@ int sirinet_bserver_init(siri_t * siri)
 #endif
 
     int rc;
+    int ip_v6 = 0;  /* false */
+    char * ip;
 
     /* bind loop to the given loop */
     loop = siri->loop;
@@ -77,19 +79,38 @@ int sirinet_bserver_init(siri_t * siri)
     /* make sure data is set to NULL so we later on can check this value. */
     backend_server.data = NULL;
 
-    if (siri->cfg->ip_support == IP_SUPPORT_IPV4ONLY)
+    if (siri->cfg->bind_backend_addr != NULL)
     {
-        uv_ip4_addr(
-                "0.0.0.0",
-                siri->cfg->listen_backend_port,
-                (struct sockaddr_in *) &server_addr);
+        struct in6_addr sa6;
+        if (inet_pton(AF_INET6, siri->cfg->bind_backend_addr, &sa6))
+        {
+            ip_v6 = 1;  /* true */
+        }
+        ip = siri->cfg->bind_backend_addr;
+    }
+    else if (siri->cfg->ip_support == IP_SUPPORT_IPV4ONLY)
+    {
+        ip = "0.0.0.0";
     }
     else
     {
+        ip = "::";
+        ip_v6 = 1;  /* true */
+    }
+
+    if (ip_v6)
+    {
         uv_ip6_addr(
-                "::",
+                ip,
                 siri->cfg->listen_backend_port,
                 (struct sockaddr_in6 *) &server_addr);
+    }
+    else
+    {
+        uv_ip4_addr(
+                ip,
+                siri->cfg->listen_backend_port,
+                (struct sockaddr_in *) &server_addr);
     }
 
     uv_tcp_bind(
@@ -314,16 +335,17 @@ static void on_auth_request(uv_stream_t * client, sirinet_pkg_t * pkg)
             siridb_server_update_address(
                     siridb,
                     server,
-                    qp_address.via.raw,
+                    (const char *) qp_address.via.raw,
                     (uint16_t) qp_port.via.int64);
 
             /* update other server properties */
             free(server->dbpath);
-            server->dbpath = strdup(qp_dbpath.via.raw);
+            server->dbpath = strdup((const char *) qp_dbpath.via.raw);
             free(server->buffer_path);
-            server->buffer_path = strdup(qp_buffer_path.via.raw);
+            server->buffer_path =
+                    strdup((const char *) qp_buffer_path.via.raw);
             free(server->libuv);
-            server->libuv = strdup(qp_libuv.via.raw);
+            server->libuv = strdup((const char *) qp_libuv.via.raw);
             server->buffer_size = (size_t) qp_buffer_size.via.int64;
             server->startup_time = (uint32_t) qp_startup_time.via.int64;
             server->ip_support = (uint8_t) qp_ip_support.via.int64;
@@ -461,7 +483,7 @@ static void on_query(uv_stream_t * client, sirinet_pkg_t * pkg, int flags)
         siridb_query_run(
                 pkg->pid,
                 client,
-                qp_query.via.raw,
+                (const char *) qp_query.via.raw,
                 qp_query.len,
                 0.0,
                 0);
@@ -608,7 +630,9 @@ static void on_drop_series(uv_stream_t * client, sirinet_pkg_t * pkg)
         if (qp_is_raw_term(&qp_series_name))
         {
             siridb_series_t * series;
-            series = ct_get(siridb->series, qp_series_name.via.raw);
+            series = ct_get(
+                    siridb->series,
+                    (const char *) qp_series_name.via.raw);
             if (series != NULL)
             {
                 uv_mutex_lock(&siridb->series_mutex);
