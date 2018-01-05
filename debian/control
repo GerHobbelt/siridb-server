@@ -10,7 +10,6 @@ Build-Depends:
  debhelper (>= 10.10.7~),
  libcleri-dev,
  libpcre2-dev,
- libpcre3-dev,
  libuv1-dev,
  uuid-dev,
 Homepage: http://siridb.net/
