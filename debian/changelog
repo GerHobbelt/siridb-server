@@ -1,3 +1,11 @@
+siridb-server (2.0.26-1) unstable; urgency=medium
+
+  * New upstream release
+  * Drop all patches
+  * Add man page
+
+ -- Paul Gevers <elbrus@debian.org>  Sat, 06 Jan 2018 07:54:21 +0100
+
 siridb-server (2.0.25-1) unstable; urgency=medium
 
   * Initial release. (Closes: #882678)
